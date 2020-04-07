@@ -41,7 +41,7 @@ export default class CardInfo extends React.Component {
             </View>
 
             <View style={{ marginLeft: 20, justifyContent: 'center', flex: 3, }}>
-               <Text style={{ fontSize: 20, fontWeight: 'bold', paddingBottom: 5 }}>{this.props.title}</Text>
+               <Text style={{ fontSize: 20, fontWeight: 'bold', paddingBottom: 5, color: '#2c3e50' }}>{this.props.title}</Text>
                <Text style={{ fontSize: 13, color: '#34495e' }}>{this.props.subtitle}</Text>
             </View>
 

@@ -7,10 +7,22 @@ import {
    Text,
    StatusBar,
    Image,
-   TouchableOpacity
+   TouchableOpacity,
+   Dimensions
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {
+   LineChart,
+   BarChart,
+   PieChart,
+   ProgressChart,
+   ContributionGraph,
+   StackedBarChart
+} from "react-native-chart-kit";
+
 import CardInfo from '../components/CardInfo';
+import LiveCard from '../components/LiveCard';
+
 
 // {['#314755',  '#26a0da']}
 export default class Home extends React.Component {
@@ -29,48 +41,58 @@ export default class Home extends React.Component {
 
             </LinearGradient>
 
-            <View style={{ flex: 2, paddingHorizontal: 20, marginTop: -40, }}>
-               <View style={{ marginBottom: 20 }}>
-                  <CardInfo
-                     color={'#ffb10021'}
-                     img={require('../img/virus.png')}
-                     title={'Se propager'}
-                     subtitle={'Arrêter la propagation est un objectif'}
-                  />
+            <View style={{ flex: 2, paddingHorizontal: 20, marginTop: -40, zIndex: 1 }}>
+              
+               <LiveCard />
+               
+               <View style={{ marginTop: 30 }}>
+                  <View style={{ marginBottom: 20, }}>
+                     <TouchableOpacity onPress={() => {
+                        this.props.navigation.navigate('Statistiques')
+                     }}>
+                        <CardInfo
+                           color={'#9b59b629'}
+                           img={require('../img/pie.png')}
+                           title={'Statistiques'}
+                           subtitle={"Il s'agit de ressources fiables"}
+                        />
+                     </TouchableOpacity>
+                  </View>
+
+                  <View style={{ marginBottom: 20 }}>
+                     <CardInfo
+                        color={'#28a4ff20'}
+                        img={require('../img/soap.png')}
+                        title={'Préventif'}
+                        subtitle={'Lavez-vous les mains avant de lire ceci'}
+                     />
+                  </View>
+
+                  <View style={{ marginBottom: 20 }}>
+                     <CardInfo
+                        color={'#ffb10021'}
+                        img={require('../img/virus.png')}
+                        title={'Se propager'}
+                        subtitle={'Arrêter la propagation est un objectif'}
+                     />
+                  </View>
+
+                  <View style={{ marginBottom: 20 }}>
+                     <CardInfo
+                        color={'#ff851221'}
+                        img={require('../img/fever.png')}
+                        title={'Symptômes'}
+                        subtitle={'Et surtout ne paniquez pas'}
+                     />
+                  </View>
                </View>
 
-               <View style={{ marginBottom: 20 }}>
-                  <CardInfo
-                     color={'#ff851221'}
-                     img={require('../img/fever.png')}
-                     title={'Symptômes'}
-                     subtitle={'Et surtout ne paniquez pas'}
-                  />
-               </View>
-
-               <View style={{ marginBottom: 20 }}>
-                  <CardInfo
-                     color={'#28a4ff20'}
-                     img={require('../img/soap.png')}
-                     title={'Préventif'}
-                     subtitle={'Lavez-vous les mains avant de lire ceci'}
-                  />
-               </View>
-
-               <View style={{ marginBottom: 20 }}>
-                  <CardInfo
-                     color={'#9b59b629'}
-                     img={require('../img/pie.png')}
-                     title={'Statistiques'}
-                     subtitle={"Il s'agit de ressources fiables"}
-                  />
-               </View>
 
             </View>
-            <View style={{flex: 1}}>
-               <Image style={{width: '100%', opacity: 0.6}} source={require('../img/back.png')} />
+            <View style={{ flex: 1 }}>
+               <Image style={{ width: '100%', opacity: 0.6 }} source={require('../img/back.png')} />
             </View>
-            
+
          </View>
       );
    }

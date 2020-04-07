@@ -12,7 +12,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from './SRC/screens/Home';
-import Details from './SRC/screens/Details';
+import Statistiques from './SRC/screens/Statistiques';
 
 
 const Stack = createStackNavigator();
@@ -25,7 +25,7 @@ class App extends React.Component {
                headerShown: false
              }}>
                <Stack.Screen name="Home" component={Home} />
-               <Stack.Screen name="Details" component={Details} />
+               <Stack.Screen name="Statistiques" component={Statistiques} />
             </Stack.Navigator>
          </NavigationContainer>
       );
