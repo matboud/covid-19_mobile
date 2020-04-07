@@ -11,21 +11,14 @@ import {
    Dimensions
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {
-   LineChart,
-   BarChart,
-   PieChart,
-   ProgressChart,
-   ContributionGraph,
-   StackedBarChart
-} from "react-native-chart-kit";
+import {connect} from 'react-redux';
 
 import CardInfo from '../components/CardInfo';
 import LiveCard from '../components/LiveCard';
 
 
 // {['#314755',  '#26a0da']}
-export default class Home extends React.Component {
+ class Home extends React.Component {
    render() {
       return (
          <View style={styles.container}>
@@ -118,3 +111,7 @@ const styles = StyleSheet.create({
       fontWeight: '500'
    }
 })
+
+const mapStateToProps= state => ({});
+
+export default connect(mapStateToProps, {})(Home);

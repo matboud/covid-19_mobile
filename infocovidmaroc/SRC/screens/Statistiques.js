@@ -98,7 +98,7 @@ export default class Statistiques extends React.Component {
                         }
                      ]
                   }}
-                  width={Dimensions.get("window").width - 60} // from react-native
+                  width={Dimensions.get("window").width - 50} // from react-native
                   height={180}
                   yAxisLabel=""
                   yAxisSuffix=""
@@ -107,7 +107,7 @@ export default class Statistiques extends React.Component {
                      backgroundColor: "#34495e",
                      backgroundGradientFrom: "#3498db",
                      backgroundGradientTo: "#ffa726",
-                     decimalPlaces: 2, // optional, defaults to 2dp
+                     decimalPlaces: 0.1, // optional, defaults to 2dp
                      color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                      labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                      style: {
@@ -123,6 +123,7 @@ export default class Statistiques extends React.Component {
                   bezier
                   style={{
                      borderRadius: 16,
+                     marginLeft: -10
                   }}
                />
             </View>
