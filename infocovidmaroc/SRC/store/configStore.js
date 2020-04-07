@@ -2,11 +2,13 @@ import { createStore } from 'redux';
 
 const data = [];
 const myData = (state = { data }, action) => {
-   switch (action.type) {
 
+   switch (action.type) {
       case 'GET_DATA':
-         console.log('im in the return of GETDATA')
-         return data;
+         return {
+             data: action.data
+         }
+          
       default:
          return state;
    }

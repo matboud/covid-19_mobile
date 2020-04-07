@@ -1,0 +1,1 @@
+export const URL_getData = 'https://mycovid19api.herokuapp.com/api/reports';

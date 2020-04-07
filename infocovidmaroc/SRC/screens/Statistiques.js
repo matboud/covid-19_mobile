@@ -12,6 +12,8 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import LiveCard from '../components/LiveCard';
 import DateCard from '../components/DateCard';
+import {connect} from 'react-redux';
+
 import {
    LineChart,
    BarChart,
@@ -22,13 +24,17 @@ import {
 } from "react-native-chart-kit";
 
 
-export default class Statistiques extends React.Component {
+class Statistiques extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
          searchText: ''
       }
    }
+   componentDidMount() {
+      console.log('heeeello', this.props.data)
+   }
+
    render() {
       return (
          <View style={styles.container}>
@@ -173,3 +179,10 @@ const styles = StyleSheet.create({
 
    }
 })
+
+
+const mapStateToProps= (state) => ({
+   data: state.data 
+});
+
+export default connect(mapStateToProps)(Statistiques);

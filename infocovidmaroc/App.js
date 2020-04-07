@@ -19,7 +19,8 @@ import Statistiques from './SRC/screens/Statistiques';
 import configStore from './SRC/store/configStore';
 import { Provider } from 'react-redux';
 
-import { getData } from './SRC/actions/Data';
+import { putData } from './SRC/actions/Data';
+import { URL_getData } from './SRC/config/Config';
 
 const store = configStore();
 
@@ -28,6 +29,38 @@ const store = configStore();
 const Stack = createStackNavigator();
 
 class App extends React.Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+
+      }
+   }
+   componentDidMount() {
+      console.log('hello');
+      fetch(URL_getData, {
+         method: 'GET',
+         headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+         },
+      })
+         .then(response => response.json())
+         .then(responseJson => {
+            console.log('LOOOOG', responseJson)
+            if (responseJson ?
+               store.dispatch(putData(responseJson))
+               :
+               (
+                  console.log('no data for you tofay')
+                  
+               )
+            );
+         })
+         .catch(error => {
+            this.showToast('An error occured, please try again later', 'danger')
+         })
+   }
+
    render() {
       return (
          <Provider store={store}>

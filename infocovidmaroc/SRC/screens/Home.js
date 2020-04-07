@@ -11,14 +11,39 @@ import {
    Dimensions
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import CardInfo from '../components/CardInfo';
 import LiveCard from '../components/LiveCard';
 
+class Home extends React.Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         total: {
+            infections: false,
+            recoveries: false,
+            deaths: false,
+            date: false
+         }
+      }
+   }
 
-// {['#314755',  '#26a0da']}
- class Home extends React.Component {
+   componentDidMount() {
+      const lastUpdate = this.props.data[this.props.data.length - 1];
+      const n_total = {
+         infections: lastUpdate.infections,
+         recoveries: lastUpdate.recoveries,
+         deaths: lastUpdate.deaths,
+         date: lastUpdate.release_date
+      }
+      this.setState({
+         total: n_total
+      })
+
+      console.log('laaaaaaaaaaaaaaast >>>>>>>', this.state.total)
+   }
+
    render() {
       return (
          <View style={styles.container}>
@@ -35,9 +60,13 @@ import LiveCard from '../components/LiveCard';
             </LinearGradient>
 
             <View style={{ flex: 2, paddingHorizontal: 20, marginTop: -40, zIndex: 1 }}>
-              
-               <LiveCard />
-               
+
+               <LiveCard
+                  infections={this.state.total.infections}
+                  recoveries={this.state.total.recoveries}
+                  deaths={this.state.total.deaths}
+               />
+
                <View style={{ marginTop: 30 }}>
                   <View style={{ marginBottom: 20, }}>
                      <TouchableOpacity onPress={() => {
@@ -112,6 +141,8 @@ const styles = StyleSheet.create({
    }
 })
 
-const mapStateToProps= state => ({});
+const mapStateToProps = (state) => ({
+   data: state.data
+});
 
 export default connect(mapStateToProps, {})(Home);

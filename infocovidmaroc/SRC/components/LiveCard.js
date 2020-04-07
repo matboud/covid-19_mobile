@@ -13,15 +13,17 @@ import {
 import { PieChart } from 'react-native-svg-charts'
 
 
-// INFECTED RECOVERED DEATHS
-
 export default class LiveCard extends React.Component {
+
+
    render() {
       // each value represents a goal ring in Progress chart
 
-      const data = [1120, 89, 80]
-
-      const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
+      const data = [
+         this.props.infections,
+         this.props.recoveries,
+         this.props.deaths,
+      ]
       return (
          <View style={{
             backgroundColor: 'white',
@@ -63,23 +65,23 @@ export default class LiveCard extends React.Component {
                <View style={{ flex: 1.4, justifyContent: 'space-around', paddingLeft: 10 }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                      <View style={{ flex: 1 }}>
-                        <Text style={{ fontSize: 17, color: '#f0932b' }}>Confirmés: </Text>
+                        <Text style={{ fontSize: 17, color: '#f0932b', fontWeight: 'bold' }}>Confirmés: </Text>
                      </View>
                      <View style={{ flex: 1 }}>
-                        <Text style={{ fontSize: 30, fontWeight: 'bold', color: '#f0932b' }}>1021</Text>
+                        <Text style={{ fontSize: 30, fontWeight: 'bold', color: '#f0932b' }}>{this.props.infections}</Text>
                      </View>
                   </View>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                      <View style={{ flex: 1 }}>
-                        <Text style={{ fontSize: 17, color: '#2ed573' }}>Rétablie: </Text></View>
+                        <Text style={{ fontSize: 17, color: '#2ed573', fontWeight: 'bold' }}>Rétablie: </Text></View>
                      <View style={{ flex: 1 }}>
-                        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#2ed573' }}>76</Text></View>
+                        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#2ed573' }}>{this.props.recoveries}</Text></View>
                   </View>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                      <View style={{ flex: 1 }}>
-                        <Text style={{ fontSize: 17, color: '#eb4d4b' }}>Décès: </Text></View>
+                        <Text style={{ fontSize: 17, color: '#eb4d4b', fontWeight: 'bold' }}>Décès: </Text></View>
                      <View style={{ flex: 1 }}>
-                        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#eb4d4b' }}>76</Text></View>
+                        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#eb4d4b' }}>{this.props.deaths}</Text></View>
                   </View>
 
                </View>
