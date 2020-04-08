@@ -52,7 +52,7 @@ class Statistiques extends React.Component {
                   </Text>
                </View>
 
-               <View style={{ flex: 1.3, paddingHorizontal: 20 }}>
+               <View style={{ flex: 1.3, paddingHorizontal: 20, paddingBottom: 15, paddingTop: 20 }}>
                   <View style={{
                      borderColor: 'white',
                      borderWidth: 1.5,
@@ -60,13 +60,11 @@ class Statistiques extends React.Component {
                      paddingHorizontal: 10,
                      flexDirection: 'row'
                   }}>
-                     <TextInput
+                     <View
                         style={styles.searchBar}
-                        onChangeText={searchText => this.setState({ searchText })}
-                        value={this.state.searchText}
-                        placeholder='Location'
-                        placeholderTextColor="#fff"
-                     />
+                     >
+                        <Text style={{color: 'white', fontSize: 20}}>Maroc</Text>
+                     </View>
                      <View style={{ flex: 0.2, alignItems: 'flex-end', justifyContent: 'center' }}>
                         <Image source={require('../img/search.png')} style={{ width: 25, height: 25 }} />
                      </View>
@@ -75,7 +73,7 @@ class Statistiques extends React.Component {
                </View>
             </LinearGradient>
 
-            <View style={{ flex: 2, paddingHorizontal: 20, marginTop: -80}}>
+            <View style={{ flex: 2, paddingHorizontal: 20, marginTop: -50}}>
                <View style={{
                   backgroundColor: "#3498db",
                   paddingHorizontal: 10,
@@ -133,7 +131,7 @@ class Statistiques extends React.Component {
                               }}
                            />
                            {
-                              // ------------------------------------------------------------------------
+                              // ------------------------------------------------------------------------ RED
 
                               <LineChart
                                  data={{
@@ -151,8 +149,9 @@ class Statistiques extends React.Component {
                                  yAxisInterval={10} // optional, defaults to 1
                                  chartConfig={{
                                     backgroundColor: "",
-                                    backgroundGradientFrom: "",
+                                    backgroundGradientFromOpacity: "",
                                     backgroundGradientTo: "",
+
                                     decimalPlaces: 0.1, // optional, defaults to 2dp
                                     color: (opacity = 1) => `#e74c3c`,
                                     labelColor: (opacity = 0) => `#e74c3c00`,
@@ -175,7 +174,7 @@ class Statistiques extends React.Component {
                               />
                            }
                            {
-                              // ------------------------------------------------------------------------
+                              // ------------------------------------------------------------------------ GREEN
 
 
                               <LineChart
@@ -194,7 +193,7 @@ class Statistiques extends React.Component {
                                  yAxisInterval={10} // optional, defaults to 1
                                  chartConfig={{
                                     backgroundColor: "",
-                                    backgroundGradientFrom: "",
+                                    backgroundGradientFromOpacity: "",
                                     backgroundGradientTo: "",
                                     decimalPlaces: 0.1, // optional, defaults to 2dp
                                     color: (opacity = 0) => `#2ecc71`,
@@ -279,8 +278,8 @@ const styles = StyleSheet.create({
       height: 40,
       fontSize: 17,
       flex: 1.5,
-      color: '#fff'
-
+      color: '#fff',
+      justifyContent: 'center'
    }
 })
 

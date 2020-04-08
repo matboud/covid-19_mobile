@@ -27,7 +27,7 @@ class Home extends React.Component {
    }
 
    componentDidMount() {
-    
+
    }
 
    render() {
@@ -35,6 +35,7 @@ class Home extends React.Component {
       const total = this.props.total;
       return (
          <View style={styles.container}>
+         
             <LinearGradient start={{ x: 0, y: 0 }} colors={['#5214cc', '#1488CC']} style={styles.header}>
                <View style={{ paddingHorizontal: 20, justifyContent: 'center', flex: 1 }}>
                   <Text style={styles.subtitle}>
@@ -46,63 +47,68 @@ class Home extends React.Component {
                </View>
 
             </LinearGradient>
-
-            <View style={{ flex: 2, paddingHorizontal: 20, marginTop: -40, zIndex: 1 }}>
-
+            
+            <View style={{ flex: 2, paddingHorizontal: 20, marginTop: -40, zIndex: 1,}}>
+               
                <LiveCard
-                  infections={total ? total.infections: 0}
+                  infections={total ? total.infections : 0}
                   recoveries={total ? total.recoveries : 0}
                   deaths={total ? total.deaths : 0}
                />
+               <ScrollView 
+               showsVerticalScrollIndicator={false}
+            >
 
-               <View style={{ marginTop: 30 }}>
-                  <View style={{ marginBottom: 20, }}>
-                     <TouchableOpacity onPress={() => {
-                        this.props.navigation.navigate('Statistiques')
-                     }}>
+               <View style={{ marginTop: 30, }}>
+                  
+                     <View style={{ marginBottom: 20, }}>
+                        <TouchableOpacity onPress={() => {
+                           this.props.navigation.navigate('Statistiques')
+                        }}>
+                           <CardInfo
+                              color={'#9b59b629'}
+                              img={require('../img/pie.png')}
+                              title={'Statistiques'}
+                              subtitle={"Il s'agit de ressources fiables"}
+                           />
+                        </TouchableOpacity>
+                     </View>
+
+                     <View style={{ marginBottom: 20 }}>
                         <CardInfo
-                           color={'#9b59b629'}
-                           img={require('../img/pie.png')}
-                           title={'Statistiques'}
-                           subtitle={"Il s'agit de ressources fiables"}
+                           color={'#28a4ff20'}
+                           img={require('../img/soap.png')}
+                           title={'Préventif'}
+                           subtitle={'Lavez-vous les mains avant de lire ceci'}
                         />
-                     </TouchableOpacity>
-                  </View>
+                     </View>
 
-                  <View style={{ marginBottom: 20 }}>
-                     <CardInfo
-                        color={'#28a4ff20'}
-                        img={require('../img/soap.png')}
-                        title={'Préventif'}
-                        subtitle={'Lavez-vous les mains avant de lire ceci'}
-                     />
-                  </View>
+                     <View style={{ marginBottom: 20 }}>
+                        <CardInfo
+                           color={'#ffb10021'}
+                           img={require('../img/virus.png')}
+                           title={'Se propager'}
+                           subtitle={'Arrêter la propagation est un objectif'}
+                        />
+                     </View>
 
-                  <View style={{ marginBottom: 20 }}>
-                     <CardInfo
-                        color={'#ffb10021'}
-                        img={require('../img/virus.png')}
-                        title={'Se propager'}
-                        subtitle={'Arrêter la propagation est un objectif'}
-                     />
-                  </View>
-
-                  <View style={{ marginBottom: 20 }}>
-                     <CardInfo
-                        color={'#ff851221'}
-                        img={require('../img/fever.png')}
-                        title={'Symptômes'}
-                        subtitle={'Et surtout ne paniquez pas'}
-                     />
-                  </View>
+                     <View style={{ marginBottom: 20 }}>
+                        <CardInfo
+                           color={'#ff851221'}
+                           img={require('../img/fever.png')}
+                           title={'Symptômes'}
+                           subtitle={'Et surtout ne paniquez pas'}
+                        />
+                     </View>
                </View>
 
-
+               </ScrollView>
             </View>
-            <View style={{ flex: 1 }}>
-               <Image style={{ width: '100%', opacity: 0.6 }} source={require('../img/back.png')} />
-            </View>
-
+            {
+            // <View style={{ flex: 1 }}>
+            //    <Image style={{ width: '100%', opacity: 0.6 }} source={require('../img/back.png')} />
+            // </View>
+}
          </View>
       );
    }

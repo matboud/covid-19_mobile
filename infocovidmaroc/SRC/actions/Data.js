@@ -25,6 +25,7 @@ export const putData = (data) => {
    recoveries.push(infections[infections.length - 1]);
 
    // getting dates data
+   // and feltering data by date
    const dates = [];
    const datesArray = [''];
    const grouped = [];
@@ -42,7 +43,7 @@ export const putData = (data) => {
          }
          grouped.push(obj)
       }
-   })
+   });
 
    dates.map((item, index = index + 1) => {
       index % 5 == 0 ? (
