@@ -19,7 +19,7 @@ import Statistiques from './SRC/screens/Statistiques';
 import configStore from './SRC/store/configStore';
 import { Provider } from 'react-redux';
 
-import { putData } from './SRC/actions/Data';
+import { putData, getTotal } from './SRC/actions/Data';
 import { URL_getData } from './SRC/config/Config';
 
 const store = configStore();
@@ -36,7 +36,7 @@ class App extends React.Component {
       }
    }
    componentDidMount() {
-      console.log('hello');
+      // console.log('App.js => componentdidmount');
       fetch(URL_getData, {
          method: 'GET',
          headers: {
@@ -46,13 +46,14 @@ class App extends React.Component {
       })
          .then(response => response.json())
          .then(responseJson => {
-            console.log('LOOOOG', responseJson)
             if (responseJson ?
-               store.dispatch(putData(responseJson))
+               (
+                  store.dispatch(putData(responseJson))
+               )
                :
                (
                   console.log('no data for you tofay')
-                  
+
                )
             );
          })

@@ -21,30 +21,18 @@ class Home extends React.Component {
       super(props);
       this.state = {
          total: {
-            infections: false,
-            recoveries: false,
-            deaths: false,
-            date: false
+
          }
       }
    }
 
    componentDidMount() {
-      const lastUpdate = this.props.data[this.props.data.length - 1];
-      const n_total = {
-         infections: lastUpdate.infections,
-         recoveries: lastUpdate.recoveries,
-         deaths: lastUpdate.deaths,
-         date: lastUpdate.release_date
-      }
-      this.setState({
-         total: n_total
-      })
-
-      console.log('laaaaaaaaaaaaaaast >>>>>>>', this.state.total)
+    
    }
 
    render() {
+      // console.log('ana fl home', this.props.total)
+      const total = this.props.total;
       return (
          <View style={styles.container}>
             <LinearGradient start={{ x: 0, y: 0 }} colors={['#5214cc', '#1488CC']} style={styles.header}>
@@ -62,9 +50,9 @@ class Home extends React.Component {
             <View style={{ flex: 2, paddingHorizontal: 20, marginTop: -40, zIndex: 1 }}>
 
                <LiveCard
-                  infections={this.state.total.infections}
-                  recoveries={this.state.total.recoveries}
-                  deaths={this.state.total.deaths}
+                  infections={total ? total.infections: 0}
+                  recoveries={total ? total.recoveries : 0}
+                  deaths={total ? total.deaths : 0}
                />
 
                <View style={{ marginTop: 30 }}>
@@ -142,7 +130,8 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-   data: state.data
+   data: state.data,
+   total: state.total
 });
 
 export default connect(mapStateToProps, {})(Home);

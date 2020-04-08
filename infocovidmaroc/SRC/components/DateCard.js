@@ -12,6 +12,7 @@ import {
 // '#f0932b' : index === 1 ? '#2ed573' : '#eb4d4b',
 export default class DateCard extends React.Component {
    render() {
+      const props = this.props;
       return (
          <View style={{
             backgroundColor: 'white',
@@ -33,17 +34,17 @@ export default class DateCard extends React.Component {
 
          }}>
             <View style={{ flex: 1.4, alignItems: 'flex-start' }}>
-               <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#2f3542' }}>12 / 01</Text>
+               <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#2f3542' }}>{props.date}</Text>
             </View>
 
             <View style={{ flex: 1, alignItems: 'center' }}>
-               <Text style={{ color: '#f0932b', fontSize: 16 }}>1200</Text>
+               <Text style={{ color: '#f0932b', fontSize: 16 }}>{props.infected}</Text>
             </View>
             <View style={{ flex: 1, alignItems: 'center' }}>
-               <Text style={{ color: '#2ed573', fontSize: 16 }}>323</Text>
+               <Text style={{ color: '#2ed573', fontSize: 16 }}>{props.recoveries}</Text>
             </View>
             <View style={{ flex: 1, alignItems: 'center' }}>
-               <Text style={{ color: '#eb4d4b', fontSize: 16 }}>12</Text>
+               <Text style={{ color: '#eb4d4b', fontSize: 16 }}>{props.deaths}</Text>
             </View>
          </View>
       );

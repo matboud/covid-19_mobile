@@ -7,12 +7,13 @@ import {
    TextInput,
    Platform,
    Image,
-   Dimensions
+   Dimensions,
+   ActivityIndicator
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import LiveCard from '../components/LiveCard';
 import DateCard from '../components/DateCard';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import {
    LineChart,
@@ -28,14 +29,17 @@ class Statistiques extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
-         searchText: ''
+         searchText: '',
+         isData: false
       }
    }
+
    componentDidMount() {
-      console.log('heeeello', this.props.data)
    }
 
+
    render() {
+
       return (
          <View style={styles.container}>
             <LinearGradient start={{ x: 0, y: 0 }} colors={['#5214cc', '#1488CC']} style={styles.header}>
@@ -71,81 +75,181 @@ class Statistiques extends React.Component {
                </View>
             </LinearGradient>
 
-            <View style={{ flex: 2, paddingHorizontal: 20, marginTop: -80 }}>
-            <View style={{
-               backgroundColor: "#3498db",
-               paddingHorizontal: 10,
-               paddingVertical: 10,
-               borderRadius: 10,
-               borderColor: 'white',
-               borderWidth: 5,
-               shadowColor: "#000",
-               shadowOffset: {
-                  width: 0,
-                  height: 2,
-               },
-               shadowOpacity: 0.23,
-               shadowRadius: 2.62,
-               elevation: 4,
-            }}>
-               <LineChart
-                  data={{
-                     labels: ["20/12", "01/01", "10/01", "20/01", "01/02", "03/02"],
-                     datasets: [
-                        {
-                           data: [
-                              2,
-                              17,
-                              20,
-                              30,
-                              45,
-                              60
-                           ]
-                        }
-                     ]
-                  }}
-                  width={Dimensions.get("window").width - 50} // from react-native
-                  height={180}
-                  yAxisLabel=""
-                  yAxisSuffix=""
-                  yAxisInterval={10} // optional, defaults to 1
-                  chartConfig={{
-                     backgroundColor: "#34495e",
-                     backgroundGradientFrom: "#3498db",
-                     backgroundGradientTo: "#ffa726",
-                     decimalPlaces: 0.1, // optional, defaults to 2dp
-                     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                     style: {
-                        borderRadius: 10,
+            <View style={{ flex: 2, paddingHorizontal: 20, marginTop: -80}}>
+               <View style={{
+                  backgroundColor: "#3498db",
+                  paddingHorizontal: 10,
+                  paddingVertical: 10,
+                  borderRadius: 10,
+                  borderColor: 'white',
+                  borderWidth: 5,
+                  shadowColor: "#000",
+                  shadowOffset: {
+                     width: 0,
+                     height: 2,
+                  },
+                  shadowOpacity: 0.23,
+                  shadowRadius: 2.62,
+                  elevation: 4,
+                  overflow: 'hidden'
+               }}>
+                  {
+                     this.props.infectionsArray ?
+                        <View>
+                           <LineChart
+                              data={{
+                                 labels: this.props.dates ? this.props.dates : [0, 0, 0, 0],
+                                 datasets: [
+                                    {
+                                       data: this.props.infectionsArray ? this.props.infectionsArray : [0, 0, 0, 0]
+                                    }
+                                 ]
+                              }}
+                              width={Dimensions.get("window").width - 15} // from react-native
+                              height={180}
+                              yAxisLabel=""
+                              yAxisSuffix=""
+                              yAxisInterval={10} // optional, defaults to 1
+                              chartConfig={{
+                                 backgroundColor: "#34495e",
+                                 backgroundGradientFrom: "#3498db",
+                                 backgroundGradientTo: "#ffa726",
 
-                     },
-                     propsForDots: {
-                        r: "6",
-                        strokeWidth: "2",
-                        stroke: "#ffa726"
+                                 decimalPlaces: 0.1, // optional, defaults to 2dp
+                                 color: (opacity = 1) => `#f0932b`,
+                                 labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                 style: {
+                                    borderRadius: 10,
+                                 },
+                                 propsForDots: {
+                                    r: "0",
+                                    strokeWidth: "0",
+                                    stroke: "green"
+                                 }
+                              }}
+                              bezier
+                              style={{
+                                 marginLeft: -35
+                              }}
+                           />
+                           {
+                              // ------------------------------------------------------------------------
+
+                              <LineChart
+                                 data={{
+                                    labels: this.props.deaths ? this.props.deaths : [0, 0, 0, 0],
+                                    datasets: [
+                                       {
+                                          data: this.props.deaths ? this.props.deaths : [0, 0, 0, 0]
+                                       }
+                                    ]
+                                 }}
+                                 width={Dimensions.get("window").width - 10} // from react-native
+                                 height={180}
+                                 yAxisLabel=""
+                                 yAxisSuffix=""
+                                 yAxisInterval={10} // optional, defaults to 1
+                                 chartConfig={{
+                                    backgroundColor: "",
+                                    backgroundGradientFrom: "",
+                                    backgroundGradientTo: "",
+                                    decimalPlaces: 0.1, // optional, defaults to 2dp
+                                    color: (opacity = 1) => `#e74c3c`,
+                                    labelColor: (opacity = 0) => `#e74c3c00`,
+                                    style: {
+                                       borderRadius: 10,
+
+                                    },
+                                    propsForDots: {
+                                       r: 0,
+                                       strokeWidth: 0,
+                                       stroke: "red"
+                                    }
+                                 }}
+                                 bezier
+                                 style={{
+                                    borderRadius: 16,
+                                    marginLeft: -35,
+                                    marginTop: -180
+                                 }}
+                              />
+                           }
+                           {
+                              // ------------------------------------------------------------------------
+
+
+                              <LineChart
+                                 data={{
+                                    labels: this.props.recoveries ? this.props.recoveries : [0, 0, 0, 0],
+                                    datasets: [
+                                       {
+                                          data: this.props.recoveries ? this.props.recoveries : [0, 0, 0, 0]
+                                       }
+                                    ]
+                                 }}
+                                 width={Dimensions.get("window").width - 10} // from react-native
+                                 height={180}
+                                 yAxisLabel=""
+                                 yAxisSuffix=""
+                                 yAxisInterval={10} // optional, defaults to 1
+                                 chartConfig={{
+                                    backgroundColor: "",
+                                    backgroundGradientFrom: "",
+                                    backgroundGradientTo: "",
+                                    decimalPlaces: 0.1, // optional, defaults to 2dp
+                                    color: (opacity = 0) => `#2ecc71`,
+                                    labelColor: (opacity = 0) => `#ffffff00`,
+                                    style: {
+                                       borderRadius: 10,
+
+                                    },
+                                    propsForDots: {
+                                       r: 0,
+                                       strokeWidth: 0,
+                                       stroke: "#2ecc71"
+                                    }
+                                 }}
+                                 bezier
+                                 style={{
+                                    borderRadius: 16,
+                                    marginLeft: -35,
+                                    marginTop: -180
+                                 }}
+                              />
+
+                           }
+                        </View>
+                        : <ActivityIndicator size="large" color="white" />
+                  }
+               </View>
+
+               <View style={{flex: 1, paddingBottom: 20, paddingTop: 3}}>
+                  <ScrollView style={{paddingTop: 5}}>
+
+                     {
+                        this.props.grouped ?
+
+                           this.props.grouped.slice(0).reverse().map((item) => {
+                              return (
+                                 <View style={{ marginBottom: 12 }}>
+                                    <DateCard
+                                       date={item.release_date}
+                                       infected={item.infections}
+                                       recoveries={item.recoveries}
+                                       deaths={item.deaths}
+                                    />
+                                 </View>
+                              )
+
+                           })
+
+                           :
+                           <ActivityIndicator size="large" color="#3498db" />
                      }
-                  }}
-                  bezier
-                  style={{
-                     borderRadius: 16,
-                     marginLeft: -10
-                  }}
-               />
-            </View>
 
-               <ScrollView style={{ paddingTop: 30, marginTop: 2 }}>
-                  <View style={{ paddingBottom: 12 }}>
-                     <DateCard />
-                  </View>
-                  <View style={{ paddingBottom: 12 }}>
-                     <DateCard />
-                  </View>
-                  <View style={{ paddingBottom: 12 }}>
-                     <DateCard />
-                  </View>
 
-               </ScrollView>
+                  </ScrollView>
+               </View>
             </View>
 
          </View>
@@ -181,8 +285,13 @@ const styles = StyleSheet.create({
 })
 
 
-const mapStateToProps= (state) => ({
-   data: state.data 
+const mapStateToProps = (state) => ({
+   data: state.data,
+   infectionsArray: state.infectionsArray,
+   deaths: state.deaths,
+   recoveries: state.recoveries,
+   dates: state.dates,
+   grouped: state.grouped
 });
 
 export default connect(mapStateToProps)(Statistiques);
