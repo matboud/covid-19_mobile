@@ -26,6 +26,10 @@ export default class LiveCard extends React.Component {
             paddingVertical: 13,
             paddingHorizontal: 15,
             borderRadius: 10,
+            height: this.props.heightCard,
+            overflow: 'hidden',
+            justifyContent: 'space-around',
+
             shadowColor: "#000",
             shadowOffset: {
                width: 0,
@@ -33,7 +37,6 @@ export default class LiveCard extends React.Component {
             },
             shadowOpacity: 0.23,
             shadowRadius: 2.62,
-
             elevation: 4,
          }}>
 
@@ -42,7 +45,8 @@ export default class LiveCard extends React.Component {
             <View>
                <Text style={{ fontSize: 25, fontWeight: 'bold', color: '#2c3e50' }}>Mise à jour des cas</Text>
                <Text style={{ color: '#6d6d6d' }}>A vous de diminuer le nombre, <Text style={{ color: '#2b2b2b' }}>restez à la maison.</Text></Text>
-
+            </View>
+            <View>
                {
                   this.props.infections === 0 ?
                      <View style={{flexDirection: 'row', paddingTop: 30}}>
@@ -55,10 +59,10 @@ export default class LiveCard extends React.Component {
 
 
                      :
-                     <View style={{ paddingTop: 20, flexDirection: 'row' }}>
-                        <View style={{ flex: 1 }}>
+                     <View style={{  flexDirection: 'row' }}>
+                        <View style={{ flex: 0.7 }}>
                            {
-                              <PieChart style={{ height: 100 }}
+                              <PieChart style={{ height: 90 }}
                                  data={
                                     data
                                        .filter((value) => value > 0)
