@@ -12,6 +12,7 @@ import {
    Animated
 } from 'react-native';
 import { connect } from 'react-redux';
+import AboutCard from '../components/AboutCard';
 
 class About extends React.Component {
    constructor(props) {
@@ -23,9 +24,29 @@ class About extends React.Component {
       const windowWidth = Dimensions.get('window').width;
       return (
          <View style={styles.container}>
-            <ScrollView style={{ width: windowWidth, paddingHorizontal: 20, paddingTop: 50 }}>
-               <View style={{ justifyContent: 'center', alignItems: 'center', }}>
-                  <Text style={{ fontSize: 23, fontWeight: 'bold', color: '#34495e' }}>About</Text>
+            <ScrollView style={{ width: windowWidth, paddingHorizontal: 20, }}>
+               <View style={{paddingVertical: 50}}>
+                  <View style={{ justifyContent: 'center', alignItems: 'center', }}>
+                     <Text style={{ fontSize: 23, fontWeight: 'bold', color: '#34495e' }}>About</Text>
+                  </View>
+                  <View style={{ marginTop: 60 }}>
+                     <AboutCard
+                        name={'Matboud Med Amine'}
+                        firstPar={'Hello 👋, im a coder 👨🏻‍💻, I work as a full-stack JS devloper at SPORTIME company.'}
+                        secPar={'i travel a lot 🗺, play guitar 🎸, and i surf 🏄🏻‍♂️ ^^'}
+                        contact={'Contact: @matboud'}
+                        img={require('../img/me.jpeg')}
+                     />
+                  </View>
+                  <View style={{ marginTop: 50 }}>
+                     <AboutCard
+                        name={'Tahali Said'}
+                        firstPar={'I am a computer science student at TH Cologne, and java, node developer at Trustedshops.'}
+                        secPar={'i like drawing, building stuff, planting and seeing life grows'}
+                        contact={'Contact: @tahalis'}
+                        img={require('../img/said.jpeg')}
+                     />
+                  </View>
                </View>
             </ScrollView>
          </View>
