@@ -45,6 +45,9 @@ export const putData = (data) => {
       }
    });
 
+   console.log('grouped', grouped[grouped.length - 1])
+   console.log('dates', data[data.length - 1])
+
    dates.map((item, index = index + 1) => {
       index % 5 == 0 ? (
          datesArray.push(item)

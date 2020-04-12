@@ -333,9 +333,7 @@ class Statistiques extends React.Component {
 
                   </View>
                }
-               <View style={{ height: 30 }}>
-
-               </View>
+               <View style={{ height: 30 }}/>
 
             </ScrollView>
          </View>
