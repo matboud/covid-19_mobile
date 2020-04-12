@@ -19,15 +19,16 @@ export default class CardInfo extends React.Component {
             flexDirection: 'row',
             justifyContent: 'space-between',
             borderRadius: 10,
+
             shadowColor: "#000",
             shadowOffset: {
                width: 0,
                height: 2,
             },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
+            shadowOpacity: this.props.disabled ? 0 : 0.23,
+            shadowRadius: this.props.disabled ? 0 : 2.62,
 
-            elevation: 4,
+            elevation: this.props.disabled ? 0 : 4,
          }}>
             <View style={{
                backgroundColor: this.props.color,
