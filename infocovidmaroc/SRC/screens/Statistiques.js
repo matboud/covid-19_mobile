@@ -150,155 +150,152 @@ class Statistiques extends React.Component {
                      <Animated.View style={{
                         paddingTop: liveCardHeight
                      }}>
-
-
-
                         {
-                           <View style={{ width: '100%' }}>
-                              {this.props.infectionsArray ?
-                                 <View style={{
-                                    backgroundColor: "#3498db",
-                                    paddingHorizontal: 10,
-                                    paddingVertical: 10,
-                                    borderRadius: 10,
-                                    borderColor: 'white',
-                                    borderWidth: 5,
-                                    shadowColor: "#000",
-                                    shadowOffset: {
-                                       width: 0,
-                                       height: 2,
-                                    },
-                                    shadowOpacity: 0.23,
-                                    shadowRadius: 2.62,
-                                    elevation: 4,
-                                    overflow: 'hidden'
-                                 }}>
-                                    <LineChart
-                                       data={{
-                                          labels: this.props.dates ? this.props.dates : [0, 0, 0, 0],
-                                          datasets: [
-                                             {
-                                                data: this.props.infectionsArray ? this.props.infectionsArray : [0, 0, 0, 0]
-                                             }
-                                          ]
-                                       }}
-                                       width={Dimensions.get("window").width - 10} // from react-native
-                                       height={180}
-                                       yAxisLabel=""
-                                       yAxisSuffix=""
-                                       yAxisInterval={10} // optional, defaults to 1
-                                       chartConfig={{
-                                          backgroundColor: "#34495e",
-                                          backgroundGradientFrom: "#3498db",
-                                          backgroundGradientTo: "#ffa726",
-
-                                          decimalPlaces: 0.1, // optional, defaults to 2dp
-                                          color: (opacity = 1) => `#f0932b`,
-                                          labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                                          style: {
-                                             borderRadius: 10,
-                                          },
-                                          propsForDots: {
-                                             r: "0",
-                                             strokeWidth: "0",
-                                             stroke: "green"
-                                          }
-                                       }}
-                                       bezier
-                                       style={{
-                                          marginLeft: -35
-                                       }}
-                                    />
-                                    {
-                                       // ------------------------------------------------------------------------ RED
-
+                              <View style={{ width: '100%' }}>
+                                 {this.props.infectionsArray ?
+                                    <View style={{
+                                       backgroundColor: "#3498db",
+                                       paddingHorizontal: 10,
+                                       paddingVertical: 10,
+                                       borderRadius: 10,
+                                       borderColor: 'white',
+                                       borderWidth: 5,
+                                       shadowColor: "#000",
+                                       shadowOffset: {
+                                          width: 0,
+                                          height: 2,
+                                       },
+                                       shadowOpacity: 0.23,
+                                       shadowRadius: 2.62,
+                                       elevation: 4,
+                                       overflow: 'hidden'
+                                    }}>
                                        <LineChart
                                           data={{
-                                             labels: this.props.deaths ? this.props.deaths : [0, 0, 0, 0],
+                                             labels: this.props.dates ? this.props.dates : [0, 0, 0, 0],
                                              datasets: [
                                                 {
-                                                   data: this.props.deaths ? this.props.deaths : [0, 0, 0, 0]
+                                                   data: this.props.infectionsArray ? this.props.infectionsArray : [0, 0, 0, 0]
                                                 }
                                              ]
                                           }}
-                                          width={Dimensions.get("window").width} // from react-native
+                                          width={Dimensions.get("window").width - 10} // from react-native
                                           height={180}
                                           yAxisLabel=""
                                           yAxisSuffix=""
                                           yAxisInterval={10} // optional, defaults to 1
                                           chartConfig={{
-                                             backgroundColor: "",
-                                             backgroundGradientFromOpacity: "",
-                                             backgroundGradientTo: "",
+                                             backgroundColor: "#34495e",
+                                             backgroundGradientFrom: "#3498db",
+                                             backgroundGradientTo: "#ffa726",
 
                                              decimalPlaces: 0.1, // optional, defaults to 2dp
-                                             color: (opacity = 1) => `#e74c3c`,
-                                             labelColor: (opacity = 0) => `#e74c3c00`,
+                                             color: (opacity = 1) => `#f0932b`,
+                                             labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                                              style: {
                                                 borderRadius: 10,
-
                                              },
                                              propsForDots: {
-                                                r: 0,
-                                                strokeWidth: 0,
-                                                stroke: "red"
+                                                r: "0",
+                                                strokeWidth: "0",
+                                                stroke: "green"
                                              }
                                           }}
                                           bezier
                                           style={{
-                                             borderRadius: 16,
                                              marginLeft: -35,
-                                             marginTop: -180
                                           }}
                                        />
-                                    }
-                                    {
-                                       // ------------------------------------------------------------------------ GREEN
+                                       {
+                                          // ------------------------------------------------------------------------ RED
 
+                                          <LineChart
+                                             data={{
+                                                labels: this.props.dates ? this.props.dates : [0, 0, 0, 0],
+                                                datasets: [
+                                                   {
+                                                      data: this.props.deaths ? this.props.deaths : [0, 0, 0, 0]
+                                                   }
+                                                ]
+                                             }}
+                                             width={Dimensions.get("window").width - 5} // from react-native
+                                             height={180}
+                                             yAxisLabel=""
+                                             yAxisSuffix=""
+                                             yAxisInterval={10} // optional, defaults to 1
+                                             chartConfig={{
+                                                backgroundColor: "",
+                                                backgroundGradientFromOpacity: "",
+                                                backgroundGradientTo: "",
 
-                                       <LineChart
-                                          data={{
-                                             labels: this.props.recoveries ? this.props.recoveries : [0, 0, 0, 0],
-                                             datasets: [
-                                                {
-                                                   data: this.props.recoveries ? this.props.recoveries : [0, 0, 0, 0]
+                                                decimalPlaces: 0.1, // optional, defaults to 2dp
+                                                color: (opacity = 1) => `#e74c3c`,
+                                                labelColor: (opacity = 0) => `#e74c3c00`,
+                                                style: {
+                                                   borderRadius: 10,
+
+                                                },
+                                                propsForDots: {
+                                                   r: 0,
+                                                   strokeWidth: 0,
+                                                   stroke: "red"
                                                 }
-                                             ]
-                                          }}
-                                          width={Dimensions.get("window").width} // from react-native
-                                          height={180}
-                                          yAxisLabel=""
-                                          yAxisSuffix=""
-                                          yAxisInterval={10} // optional, defaults to 1
-                                          chartConfig={{
-                                             backgroundColor: "",
-                                             backgroundGradientFromOpacity: "",
-                                             backgroundGradientTo: "",
-                                             decimalPlaces: 0.1, // optional, defaults to 2dp
-                                             color: (opacity = 0) => `#2ecc71`,
-                                             labelColor: (opacity = 0) => `#ffffff00`,
-                                             style: {
-                                                borderRadius: 10,
+                                             }}
+                                             bezier
+                                             style={{
+                                                borderRadius: 16,
+                                                marginLeft: -35,
+                                                marginTop: -180
+                                             }}
+                                          />
+                                       }
+                                       {
+                                          // ------------------------------------------------------------------------ GREEN
 
-                                             },
-                                             propsForDots: {
-                                                r: 0,
-                                                strokeWidth: 0,
-                                                stroke: "#2ecc71"
-                                             }
-                                          }}
-                                          bezier
-                                          style={{
-                                             borderRadius: 16,
-                                             marginLeft: -35,
-                                             marginTop: -180
-                                          }}
-                                       />
 
-                                    }
-                                 </View>
-                                 : <ActivityIndicator size="large" color="white" />}
-                           </View>
+                                          <LineChart
+                                             data={{
+                                                labels: this.props.recoveries ? this.props.recoveries : [0, 0, 0, 0],
+                                                datasets: [
+                                                   {
+                                                      data: this.props.recoveries ? this.props.recoveries : [0, 0, 0, 0]
+                                                   }
+                                                ]
+                                             }}
+                                             width={Dimensions.get("window").width - 5} // from react-native
+                                             height={180}
+                                             yAxisLabel=""
+                                             yAxisSuffix=""
+                                             yAxisInterval={10} // optional, defaults to 1
+                                             chartConfig={{
+                                                backgroundColor: "",
+                                                backgroundGradientFromOpacity: "",
+                                                backgroundGradientTo: "",
+                                                decimalPlaces: 0.1, // optional, defaults to 2dp
+                                                color: (opacity = 0) => `#2ecc71`,
+                                                labelColor: (opacity = 0) => `#ffffff00`,
+                                                style: {
+                                                   borderRadius: 10,
+
+                                                },
+                                                propsForDots: {
+                                                   r: 0,
+                                                   strokeWidth: 0,
+                                                   stroke: "#2ecc71"
+                                                }
+                                             }}
+                                             bezier
+                                             style={{
+                                                borderRadius: 16,
+                                                marginLeft: -35,
+                                                marginTop: -180
+                                             }}
+                                          />
+
+                                       }
+                                    </View>
+                                    : <ActivityIndicator size="large" color="white" />}
+                              </View>
                         }
 
 
@@ -333,7 +330,7 @@ class Statistiques extends React.Component {
 
                   </View>
                }
-               <View style={{ height: 30 }}/>
+               <View style={{ height: 30 }} />
 
             </ScrollView>
          </View>
